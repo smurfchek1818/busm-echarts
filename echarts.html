@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Music Education Access vs Participation</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5"></script>
+  </head>
+  <body style="height: 100%; margin: 0">
+    <div id="main" style="height: 100vh;"></div>
+    <script>
+      var chart = echarts.init(document.getElementById('main'));
+
+      var option = {
+        title: {
+          text: 'Music Education Access vs. Participation',
+          left: 'center',
+          textStyle: {
+            fontSize: 20,
+            fontWeight: 'bold'
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' }
+        },
+        grid: {
+          left: '10%',
+          right: '10%',
+          bottom: '10%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'value',
+          axisLabel: {
+            formatter: '{value} %'
+          },
+          splitLine: { lineStyle: { type: 'dashed' } }
+        },
+        yAxis: {
+          type: 'category',
+          data: ['Have Access to Music Ed', 'Participate in Music Ed', 'No Access to Music Ed'],
+          axisTick: { show: false },
+          axisLabel: {
+            fontSize: 14,
+            color: '#333'
+          }
+        },
+        series: [
+          {
+            name: 'Percentage',
+            type: 'bar',
+            data: [92, 49, 8],
+            itemStyle: {
+              borderRadius: 6,
+              color: function (params) {
+                const colors = ['#5470C6', '#91CC75', '#EE6666'];
+                return colors[params.dataIndex];
+              }
+            },
+            label: {
+              show: true,
+              position: 'right',
+              formatter: '{c}%',
+              fontSize: 14
+            }
+          }
+        ]
+      };
+
+      chart.setOption(option);
+    </script>
+  </body>
+</html>
